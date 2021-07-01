@@ -7,11 +7,17 @@ catch (Exception $e)
 die ('Erreur : ' . $e->getMessage());
 }
 
-
-$sth = $filmdb->prepare("SELECT titre FROM film");
+$search = $_POST['s'];
+$sth = $filmdb->prepare("SELECT film.titre, film.description_film, film.date_de_sortie_iddate_de_sortie ,
+group_concat(genre.genre) as genre
+FROM film
+INNER JOIN film_has_genre ON film_has_genre.film_id_film = film.id_film
+INNER JOIN genre ON film_has_genre.genre_idgenre = idgenre
+WHERE titre LIKE '%$search%'
+GROUP BY film.titre, film.description_film, film.date_de_sortie_iddate_de_sortie
+");
 $sth->execute();
 
-$test = $sth->fetchAll();
 
-
-print_r($test);
+$test = $sth->fetchAll(PDO::FETCH_NUM);
+// echo JSON_encode($test);
