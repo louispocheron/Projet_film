@@ -52,6 +52,10 @@ $movie_page = $film_db->prepare(
 // Requête pour les Genres
 
 $gender_page = $film_db->prepare(
-    "SELECT 
+    "SELECT film.image
+    FROM film
+    INNER JOIN film_has_genre ON film_has_genre.film_id_film
+    INNER JOIN genre ON idgenre = film_has_genre.genre_idgenre
+    WHERE genre = $gender_name
     "
 );
