@@ -33,7 +33,6 @@
 -  Visual studio code pour l'éditeur de texte
 -  Trello pour la répartition des taches 
 - Github pour la partage des dossiers
-- Twig pour le template Engine
 
 ## Collaborateurs 
 Louis Pocheron chef de projet : 
